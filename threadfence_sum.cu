@@ -111,7 +111,7 @@ __global__ void sum(const float* array, unsigned int N, volatile float* result) 
     float partialSum = calculatePartialSum(array, N);
     if (threadIdx.x == 0) {
         result[blockIdx.x] = partialSum;
-        __threadfence();
+        __threadfence();  // attention
         unsigned int value = atomicInc(&count, gridDim.x);
         isLastBlockDone = (value == (gridDim.x - 1));
     }
