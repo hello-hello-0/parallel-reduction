@@ -116,7 +116,7 @@ __global__ void sum(const float* array, unsigned int N, volatile float* result) 
         isLastBlockDone = (value == (gridDim.x - 1));
     }
 
-    __syncthreads();
+    __syncthreads(); //must have 
 
     if (isLastBlockDone) {
         float totalSum = calculateTotalSum(result);
